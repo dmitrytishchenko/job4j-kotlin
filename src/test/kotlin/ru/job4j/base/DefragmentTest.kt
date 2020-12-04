@@ -8,4 +8,9 @@ class DefragmentTest : StringSpec({
         defragment(arrayOf<String?>("bob", null, "nik", null, "mak", "alex")) shouldBe
                 arrayOf<String?>("bob","nik", "mak","alex", null, null)
     }
+
+    "Defragment massiv2" {
+        defragment(arrayOf<String?>(null, null, "nik", null, "mak", "alex")) shouldBe
+                arrayOf<String?>("nik", "mak","alex", null, null, null)
+    }
 })
