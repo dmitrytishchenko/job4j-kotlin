@@ -1,7 +1,7 @@
 package ru.job4j.tracker
 
 class Tracker {
-    private var items = ArrayList<Item>()
+    private val items = ArrayList<Item>()
 
     fun addItem(item: Item): Item {
         items.add(item)
@@ -15,12 +15,11 @@ class Tracker {
     }
 
     fun findItemById(id: Int): Item? {
-        var resultItem: Item? = null
         for (i in items) {
             if (i.id == id) {
-                resultItem = i
+                return i
             }
         }
-        return resultItem
+        return null
     }
 }

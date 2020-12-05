@@ -1,6 +1,6 @@
 package ru.job4j.tracker
 
-data class Item(private var id: Int = 0,
-                private var name: String = "",
-                private var description: String = "",
-                private var comments: String = "")
+data class Item(val id: Int,
+                val name: String,
+                val description: String,
+                var comments: String)
