@@ -3,18 +3,18 @@ package ru.job4j.tracker
 class Tracker {
     private val items = ArrayList<Item>()
 
-    fun addItem(item: Item): Item {
+    internal fun addItem(item: Item): Item {
         items.add(item)
         return item
     }
 
-    fun findAllItems(): ArrayList<Item> = items
+    internal fun findAllItems(): ArrayList<Item> = items
 
-    fun deleteItem(id: Int) {
+    internal fun deleteItem(id: Int) {
         items.remove(findItemById(id))
     }
 
-    fun findItemById(id: Int): Item? {
+    internal fun findItemById(id: Int): Item? {
         for (i in items) {
             if (i.id == id) {
                 return i
