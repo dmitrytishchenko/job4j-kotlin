@@ -12,14 +12,15 @@ class User {
         this.login = login
     }
 
-    private fun show() {
+    internal fun show() {
         println("$name $login")
     }
+}
 
     fun main() {
         val user = User("Dmitriy")
         val user2 = User("Dmitriy", "dmt")
         user.show()
         user2.show()
-    }
+
 }
