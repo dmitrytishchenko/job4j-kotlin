@@ -2,8 +2,10 @@ package ru.job4j.tracker
 
 import java.util.*
 
-object StartUI {
+object StartUI : Action {
     private val tracker = Tracker()
+    private val consoleInput = ConsoleInput()
+
     private var input = Scanner(System.`in`)
 
     init {
@@ -13,10 +15,10 @@ object StartUI {
             println("Введите пункт меню: ")
             when (input.next()) {
                 "1" -> {
-                    addItem()
+                    addItem(tracker, consoleInput)
                 }
                 "2" -> {
-                    showAllItem()
+                    showAllItems(tracker, consoleInput)
                 }
                 else -> {
                     work = exit()
@@ -32,26 +34,21 @@ object StartUI {
         println("3. Выход")
     }
 
-    private fun addItem() {
-        print("Введите id заявки: ")
-        val id = input.nextInt()
-        print("Введите имя заявки: ")
-        val name = input.next()
-        print("Введите описание заявки: ")
-        val desc = input.next()
-        print("Введите комментарий заявки: ")
-        val comments = input.next()
-        tracker.addItem(Item(id, name, desc, comments))
+    override fun addItem(tracker: Tracker, input: Input) {
+        tracker.addItem(Item(
+            input.ask("Input id"),
+            input.ask("Input name"),
+            input.ask("Input description"),
+            input.ask("Input comments")))
     }
 
-    private fun showAllItem() {
-        for (i in tracker.findAllItems()) {
-            println("Заявка - $i")
-            println()
+    override fun showAllItems(tracker: Tracker, input: Input) {
+        for (i in StartUI.tracker.findAllItems()) {
+            input.ask("Заявка - $i")
         }
     }
 
-    private fun exit(): Boolean {
+    override fun exit(): Boolean {
         return false
     }
 }

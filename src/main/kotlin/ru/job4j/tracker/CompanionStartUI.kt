@@ -35,7 +35,7 @@ class CompanionStartUI {
 
         private fun addItem() {
             print("Введите id заявки: ")
-            val id = input.nextInt()
+            val id = input.next()
             print("Введите имя заявки: ")
             val name = input.next()
             print("Введите описание заявки: ")

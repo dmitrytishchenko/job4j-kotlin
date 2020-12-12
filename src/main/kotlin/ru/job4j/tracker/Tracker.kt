@@ -10,11 +10,11 @@ class Tracker {
 
     internal fun findAllItems(): ArrayList<Item> = items
 
-    internal fun deleteItem(id: Int) {
+    internal fun deleteItem(id: String) {
         items.remove(findItemById(id))
     }
 
-    internal fun findItemById(id: Int): Item? {
+    internal fun findItemById(id: String): Item? {
         for (i in items) {
             if (i.id == id) {
                 return i
