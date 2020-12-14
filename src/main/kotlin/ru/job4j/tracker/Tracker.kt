@@ -3,9 +3,8 @@ package ru.job4j.tracker
 class Tracker {
     private val items = ArrayList<Item>()
 
-    internal fun addItem(item: Item): Item {
-        items.add(item)
-        return item
+    internal fun addItem(item: Item): Boolean {
+        return items.add(item)
     }
 
     internal fun findAllItems(): ArrayList<Item> = items

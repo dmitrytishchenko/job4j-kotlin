@@ -11,17 +11,15 @@ object StartUI {
         while (work) {
             printMenu()
             println("Введите пункт меню: ")
-            when (input.next()) {
-                "1" -> {
-                    addItem()
-                }
-                "2" -> {
-                    showAllItem()
-                }
-                else -> {
-                    work = exit()
-                }
-            }
+            work = getMenuItem()
+        }
+    }
+
+    private fun getMenuItem(): Boolean {
+        return when (input.next()) {
+            "1" -> addItem()
+            "2" -> showAllItem()
+            else -> exit()
         }
     }
 
@@ -32,7 +30,7 @@ object StartUI {
         println("3. Выход")
     }
 
-    private fun addItem() {
+    private fun addItem(): Boolean{
         print("Введите id заявки: ")
         val id = input.nextInt()
         print("Введите имя заявки: ")
@@ -41,14 +39,19 @@ object StartUI {
         val desc = input.next()
         print("Введите комментарий заявки: ")
         val comments = input.next()
-        tracker.addItem(Item(id, name, desc, comments))
+        return tracker.addItem(Item(id, name, desc, comments))
     }
 
-    private fun showAllItem() {
-        for (i in tracker.findAllItems()) {
-            println("Заявка - $i")
-            println()
+    private fun showAllItem(): Boolean {
+        var result = false
+        if (tracker.findAllItems().size != 0) {
+            result = true
+            for (i in tracker.findAllItems()) {
+                println("Заявка - $i")
+                println()
+            }
         }
+        return result
     }
 
     private fun exit(): Boolean {
