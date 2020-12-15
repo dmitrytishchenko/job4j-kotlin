@@ -19,3 +19,7 @@ class HtmlTable {
         return table.toString()
     }
 }
+
+fun main() {
+    println(HtmlTable().tab(5, 6))
+}
