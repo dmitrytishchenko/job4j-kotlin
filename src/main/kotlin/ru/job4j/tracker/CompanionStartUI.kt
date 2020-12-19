@@ -5,7 +5,7 @@ import java.util.*
 class CompanionStartUI {
     companion object CompStartUI {
         private val tracker = Tracker()
-        private var input = Scanner(System.`in`)
+        private val input = Scanner(System.`in`)
 
         init {
             var work = true

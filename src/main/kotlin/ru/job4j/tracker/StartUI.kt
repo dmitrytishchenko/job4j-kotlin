@@ -6,7 +6,7 @@ object StartUI : Action {
     private val tracker = Tracker()
     private val consoleInput = ConsoleInput()
 
-    private var input = Scanner(System.`in`)
+    private val input = Scanner(System.`in`)
 
     init {
         var work = true
