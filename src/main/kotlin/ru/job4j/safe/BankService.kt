@@ -19,12 +19,10 @@ class BankService {
 
     fun addAccount(passport: String, account: Account) {
         val user = findByPassport(passport)
-        if (user != null) {
-            users[user]?.add(account)
-        }
+        users[user]?.add(account)
     }
 
-    private fun findByRequisite(passport: String, requisite: String): Account? {
+    fun findByRequisite(passport: String, requisite: String): Account? {
         val user = findByPassport(passport) ?: return null
         return users[user]!!.stream().filter { it.requisite == requisite }.findFirst().orElse(null)
     }
@@ -50,6 +48,24 @@ class BankService {
 fun main() {
     val bank = BankService()
     bank.addUser(User("Dmitri", "321"))
-    val user = bank.findByPassport("321")
-    println(user?.name)
+    bank.addUser(User("Ben", "123"))
+    val user1 = bank.findByPassport("321")
+    val user2 = bank.findByPassport("123")
+    println(user1?.name)
+    println(user2?.name)
+    val account1 = Account("some requisite1", 500.0)
+    println(account1.requisite)
+    val account2 = Account("some requisite2", 100.0)
+    println(account2.requisite)
+    bank.addAccount("321", account1)
+    bank.addAccount("123", account2)
+    println(bank.findByRequisite("321", account1.requisite)?.balance)
+    println(bank.findByRequisite("123", account2.requisite)?.balance)
+    println(
+        bank.transferMoney(
+            "321", account1.requisite,
+            "123", account2.requisite, 900.0
+        )
+    )
+
 }
