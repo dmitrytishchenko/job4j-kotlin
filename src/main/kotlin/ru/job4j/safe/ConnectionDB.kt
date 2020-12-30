@@ -1,5 +1,6 @@
 package ru.job4j.safe
 
+import mu.KotlinLogging
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
@@ -12,6 +13,7 @@ import java.sql.SQLException
 
 class ConnectionDB {
     private lateinit var connection: Connection
+    private val logger = KotlinLogging.logger {}
 
     private val url = "jdbc:postgresql://127.0.0.1:5432/postgres"
     private val username = "postgres"
@@ -50,12 +52,14 @@ class ConnectionDB {
         connection.close()
     }
 
-    fun exec(sql: String) {
+    fun exec(sql: String): String {
         val st = connection.createStatement()
         val rs = st.executeQuery(sql)
         while (rs.next()) {
             println(rs.getString("name"))
+
         }
+        return logger.info("Скрипт выполнен").toString()
     }
 }
 
