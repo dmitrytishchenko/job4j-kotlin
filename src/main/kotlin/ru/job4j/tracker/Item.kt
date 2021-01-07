@@ -1,6 +1,14 @@
 package ru.job4j.tracker
 
-data class Item(internal val id: Int,
-                internal val name: String,
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+
+@Entity
+data class Item(@Id
+                @GeneratedValue(strategy = GenerationType.AUTO) internal var id: Int,
+                internal var name: String,
                 internal val description: String,
-                internal var comments: String)
+                internal var comments: String) {
+}
